@@ -14,7 +14,7 @@ class Grafo {
     vector<vector<int>> matriz_adj;
     vector<vector<int>> lista_adj;
 
-    vector<int> pai;
+    vector<int*> pai;
     vector<int> dist;
     vector<int> cor;
 public:
@@ -22,9 +22,10 @@ public:
     int num_comp_desconexas();
     void bfs(int fonte);
     void dfs();
+    void menor_caminho(int fonte, int destino);
 
     void setMatriz_adj(int i, int j, int num);
     int getMatriz_adj(int i, int j);
-    void setLIsta_adj(int i, int j, int num);
+    void setLista_adj(int i, int num);
     int getLista_adj(int i, int j);
 };
