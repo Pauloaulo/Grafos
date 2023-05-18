@@ -81,29 +81,30 @@ void Grafo::dfs() {
 }
 
 void Grafo::menor_caminho(int fonte, int destino) {
-    if (fonte == destino) return; // ponto de partida e saÌda s„o iguais 
-    queue<int> caminho;
+    if (fonte == destino) return; // ponto de partida e sa√≠da s√£o iguais
+    
+    stack<int> caminho;
+    caminho.push(destino);
+        
+    bfs(fonte);
 
-    bfs(destino);
-
-    if (pai[fonte] == NULL) { // vertices desconexos 
-        cout << "Os vÈrtices s„o desconexos." << endl;
+    if (pai[destino] == NULL) { // vertices desconexos 
+        cout << "Os v√©rtices s√£o desconexos." << endl;
         return;
     } 
 
-    const int* ponteiro = pai[fonte];
+    int* ponteiro = pai[destino];
     caminho.push(*ponteiro);
-    int u = caminho.front();
+    int u = caminho.top();
     while (u != destino) {
-
-        const int* aux = pai[u];
+        int* aux = pai[u];
         caminho.push(*aux);
         u = *aux;
     }
 
     cout << "{";
     while (!caminho.empty()) {
-        int elemento = caminho.front();
+        int elemento = caminho.top();
         caminho.pop();
         if (caminho.size() != 0) {
             cout << elemento << ", ";
